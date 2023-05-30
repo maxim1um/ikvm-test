@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>ikvm_test</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IKVM.Maven.Sdk" Version="1.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MavenReference Include="poi-tl">
+      <GroupId>com.deepoove</GroupId>
+      <ArtifactId>poi-tl</ArtifactId>
+      <Classifier></Classifier>
+      <Version>1.12.1</Version>
+    </MavenReference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(ProjectDir)test.docx $(ProjectDir)$(OutDir)" />
+  </Target>
+
+</Project>
