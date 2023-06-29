@@ -13,16 +13,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <MavenReference Include="poi-tl">
-      <GroupId>com.deepoove</GroupId>
-      <ArtifactId>poi-tl</ArtifactId>
+    <MavenReference Include="poi-ooxml">
+      <GroupId>org.apache.poi</GroupId>
+      <ArtifactId>poi-ooxml</ArtifactId>
       <Classifier></Classifier>
-      <Version>1.12.1</Version>
+      <Version>5.2.3</Version>
     </MavenReference>
+    <MavenReference Include="log4j-core">
+        <GroupId>org.apache.logging.log4j</GroupId>
+        <ArtifactId>log4j-core</ArtifactId>
+        <Classifier></Classifier>
+        <Version>2.18.0</Version>
+    </MavenReference>
+      
   </ItemGroup>
-
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy $(ProjectDir)test.docx $(ProjectDir)$(OutDir)" />
-  </Target>
 
 </Project>

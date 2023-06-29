@@ -1,15 +1,18 @@
 ﻿namespace ikvm_test
 {
+    using org.apache.poi.xwpf.usermodel;
     internal class Program
     {
         static void Main(string[] args)
         {
-            java.util.Map data = new java.util.HashMap();
-            data.put("name", "sayi");
-
-            com.deepoove.poi.XWPFTemplate template = com.deepoove.poi.XWPFTemplate.compile("test.docx").render(data);
+            org.apache.logging.log4j.Logger log4j2 = org.apache.logging.log4j.LogManager.getLogger();
 
             var outputPath = "output.docx";
+
+            XWPFDocument doc = new XWPFDocument();
+            XWPFParagraph p1 = doc.createParagraph();
+            XWPFRun r1 = p1.createRun();
+            r1.setText("The quick brown fox");
 
             if (File.Exists(outputPath))
             {
@@ -22,7 +25,9 @@
                 File.Delete(outputPath);
             }
 
-            template.writeAndClose(new java.io.FileOutputStream(outputPath));
+            java.io.FileOutputStream os = new java.io.FileOutputStream(outputPath);
+            doc.write(os);
+            doc.close();
 
             Console.WriteLine("Test Done");
         }
